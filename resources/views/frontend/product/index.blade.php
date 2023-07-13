@@ -21,7 +21,7 @@
                     <div class="detail-product-image">
                         <div class="gallery">
                             <div class="gallery-image-preview position-relative d-none d-md-block">
-                                <img src="{{ pare_url_file($images[0] ?? "") }}" alt="Đang tải avatar" width="100%">
+                                <img src="{{ pare_url_file($productDetail->avatar) }}" alt="Đang tải avatar" width="100%">
                                 <span class="preview-image-number"></span>
                                 <span class="time-post-image">Tin đăng vào {{ $productDetail->created_at }}</span>
                             </div>

@@ -64,9 +64,9 @@
                                                     <img src="{{ pare_url_file(\Auth::user()->avatar ?? '') }}"
                                                         onerror="this.src='https://123code.net/images/preloader.png';"
                                                         alt="" width="34px" height="34px">
-                                                    <img src="./assets/img/25118033.jpg" alt="" width="100%">
+                                                    <img src="{{ asset('/assets/img/25118033.jpg') }}" alt="" width="100%">
                                                 </a>
-                                                <img src="./assets/img/edit-filled.svg" alt="edit" class="edit-avt">
+                                                <img src="{{ asset('/assets/img/edit-filled.svg') }}" alt="edit" class="edit-avt">
                                             </div>
                                             <div class="user-info">
                                                 <h3 class="user-name">
@@ -107,7 +107,7 @@
                                                 <span>Điểm tốt</span>
                                                 <div class="d-flex align-items-center">
                                                     <span class="font-weight-bold">0</span>
-                                                    <img class="ml-1" src="./assets/img/good-point.svg"
+                                                    <img class="ml-1" src="{{asset('/assets/img/good-point.svg')}}"
                                                         alt="">
                                                 </div>
                                             </div>
@@ -115,7 +115,7 @@
                                                 <span>Điểm tốt</span>
                                                 <div class="d-flex align-items-center">
                                                     <span class="font-weight-bold">0</span>
-                                                    <img class="ml-1" src="./assets/img/good-point.svg"
+                                                    <img class="ml-1" src="{{asset('/assets/img/good-point.svg')}}"
                                                         alt="">
                                                 </div>
                                             </div>

@@ -80,8 +80,10 @@ class ProductController extends Controller
             }
         } catch (\Exception $exception) {
             Log::error("ERROR => ProductController@store => " . $exception->getMessage());
+            toastr()->error('Thêm mới thất bại!', 'Thông báo', ['timeOut' => 2000]);
             return redirect()->route('get_admin.product.index');
         }
+        toastr()->success('Thêm mới thành công!', 'Thông báo', ['timeOut' => 2000]);
         return redirect()->route('get_admin.product.index');
     }
 
@@ -134,8 +136,11 @@ class ProductController extends Controller
             }
         } catch (\Exception $exception) {
             Log::error("ERROR => ProductController@store => " . $exception->getMessage());
+            toastr()->error('Cập nhật thất bại!', 'Thông báo', ['timeOut' => 2000]);
             return redirect()->route('get_admin.product.update', $id);
         }
+
+        toastr()->success('Cập nhật thành công!', 'Thông báo', ['timeOut' => 2000]);
         return redirect()->route('get_admin.product.index');
     }
 
@@ -146,7 +151,10 @@ class ProductController extends Controller
             if ($product) $product->delete();
         } catch (\Exception $exception) {
             Log::error("ERROR => ProductController@delete => " . $exception->getMessage());
+            toastr()->error('Xóa thất bại!', 'Thông báo', ['timeOut' => 2000]);
         }
+
+        toastr()->success('Xóa thành công!', 'Thông báo', ['timeOut' => 2000]);
         return redirect()->route('get_admin.product.index');
     }
 

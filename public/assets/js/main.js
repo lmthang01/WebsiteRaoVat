@@ -1,4 +1,3 @@
-
 let $slider = $(".owl-carousel.slider");
 if ($slider.length > 0 ) {
     $('.owl-carousel.slider').owlCarousel({
@@ -11,7 +10,7 @@ if ($slider.length > 0 ) {
     })
 }
 
-let $galleryProductSlide = $(".owl-carousel.gallery-product-slide");
+let $galleryProductSlide = $(".gallery-product-slide");
 if ($galleryProductSlide.length > 0 ) {
     $('.owl-carousel.gallery-product-slide').owlCarousel({
         loop:false,
@@ -27,84 +26,73 @@ if ($galleryProductSlide.length > 0 ) {
     })
 }
 
-let $productRelated = $(".owl-carousel.product-related");
-if($productRelated.length > 0){
-    $('.owl-carousel.product-related').owlCarousel({
-        loop:true,
-        nav:false,
-        items: 2.2,
-        autoplay: true,
-        autoplayTimeout: 3000,
-        navText: ['<i class="fa-solid fa-angle-left"></i>','<i class="fa-solid fa-angle-right"></i>'],
-        responsive: {
-            768:{
-                items: 3.4,
-            }
+
+$('.owl-carousel.product-related').owlCarousel({
+    loop:true,
+    nav:false,
+    items: 2.2,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    navText: ['<i class="fa-solid fa-angle-left"></i>','<i class="fa-solid fa-angle-right"></i>'],
+    responsive: {
+        768:{
+            items: 3.4,
         }
-    })
-}
+    }
+})
 
-
-
-let productRelatedSlider = $(".owl-carousel.detail-product-related-slider");
-if(productRelatedSlider.length > 0){
-    $('.owl-carousel.detail-product-related-slider').owlCarousel({
-        loop:true,
-        nav:false,
-        items: 2,
-        margin: 1,
-        autoplay: true,
-        autoplayTimeout: 3000,
-        navText: ['<i class="fa-solid fa-angle-left"></i>','<i class="fa-solid fa-angle-right"></i>'],
-        responsive: {
-            768:{
-                items: 5,
-            }
+$('.owl-carousel.detail-product-related-slider').owlCarousel({
+    loop:true,
+    nav:false,
+    items: 2,
+    margin: 1,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    navText: ['<i class="fa-solid fa-angle-left"></i>','<i class="fa-solid fa-angle-right"></i>'],
+    responsive: {
+        768:{
+            items: 5,
         }
-    })
-}
+    }
+})
 
-let subMenuSlider = $(".owl-carousel.sub-menu-slider");
-if(subMenuSlider.length > 0){
-    $('.owl-carousel.sub-menu-slider').owlCarousel({
-        loop:false,
-        margin:10,
-        nav:false,
-        items: 4,
-        autoplay: false,
-        autoplayTimeout: 3000,
-        responsive : {
-            768 : {
-                items: 9,
-            }
+$('.owl-carousel.sub-menu-slider').owlCarousel({
+    loop:false,
+    margin:10,
+    nav:false,
+    items: 4,
+    autoplay: false,
+    autoplayTimeout: 3000,
+    responsive : {
+        768 : {
+            items: 9,
         }
-    })
-}
+    }
+})
 
-let listCategory =  $(".owl-carousel.list-category");
-if(listCategory.length > 0){
-    $('.owl-carousel.list-category').owlCarousel({
-        loop:false,
-        margin:10,
-        nav:false,
-        items: 3,
-        autoplay: false,
-        autoplayTimeout: 3000,
-        navText: ['<i class="fa-solid fa-angle-left"></i>','<i class="fa-solid fa-angle-right"></i>'],
-        responsive : {
-            768 : {
-                nav: true,
-                items: 7,
-            }
+
+$('.owl-carousel.list-category').owlCarousel({
+    loop:false,
+    margin:10,
+    nav:false,
+    items: 3,
+    autoplay: false,
+    autoplayTimeout: 3000,
+    navText: ['<i class="fa-solid fa-angle-left"></i>','<i class="fa-solid fa-angle-right"></i>'],
+    responsive : {
+        768 : {
+            nav: true,
+            items: 7,
         }
-    })
-}
+    }
+})
+
 
 let item_menu = document.querySelectorAll('.item-menu');
 item_menu.forEach(function(item){
     item.onclick = function(e){
         e.stopPropagation();
-        item.classList.toggle("active")
+        item.classList.toggle("active");
     }
 })
 
@@ -142,12 +130,12 @@ btn_item_filter.forEach(function(item){
 })
 
 // Khi người dùng nhấp vào nút đóng hoặc bất kỳ nơi nào bên ngoài Popup, đóng Popup
-if(span){
+if (span)
+{
     span.onclick = function() {
         popup_filter.style.display = "none";
     }
 }
-
 
 window.onclick = function(event) {
   if (event.target == popup_filter) {
@@ -159,67 +147,63 @@ function priceRange(){
     const rangeInput = document.querySelectorAll(".range-input input"),
     priceInput = document.querySelectorAll(".price-filter-input input"),
     range = document.querySelector(".slider-range .progress");
-    
-    let field_value_min = document.querySelectorAll('.field-value-min')
-    let field_value_max = document.querySelectorAll('.field-value-max')
 
-    if(priceInput.length > 0){
+    let field_value_min = document.querySelectorAll('.field-value-min')
+    let field_value_max = document.querySelectorAll('.field-value-max');
+    if (priceInput.length > 0) {
         field_value_min[0].textContent = priceInput[0].value
         field_value_max[0].textContent = priceInput[1].value
     }
 
-    
     rangeInput.forEach(input =>{
         input.addEventListener("input", e =>{
             let minVal = parseInt(rangeInput[0].value),
             maxVal = parseInt(rangeInput[1].value);
-    
-            
+
+
                 priceInput[0].value = minVal;
                 field_value_min[0].textContent = minVal;
                 priceInput[1].value = maxVal;
                 field_value_max[0].textContent = maxVal;
                 range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
                 range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
-            
+
         });
     });
 }
 
-// priceRange()
+priceRange()
 
 
 function yearRange(){
     const rangeInput = document.querySelectorAll(".year-range-input input"),
     priceInput = document.querySelectorAll(".year-price-filter-input input"),
     range = document.querySelector(".year-slider-range .year-progress");
-    
+
     let field_value_min = document.querySelectorAll('.year-field-value-min')
     let field_value_max = document.querySelectorAll('.year-field-value-max')
-
-    if(priceInput.length > 0){
+    if (priceInput.length > 0) {
         field_value_min[0].textContent = priceInput[0].value
         field_value_max[0].textContent = priceInput[1].value
     }
 
-    
     rangeInput.forEach(input =>{
         input.addEventListener("input", e =>{
             let minVal = parseInt(rangeInput[0].value),
             maxVal = parseInt(rangeInput[1].value);
-    
-            
+
+
                 priceInput[0].value = minVal;
                 field_value_min[0].textContent = minVal;
                 priceInput[1].value = maxVal;
                 field_value_max[0].textContent = maxVal;
                 range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
                 range.style.right =(maxVal / rangeInput[1].max) * 100 + "%";
-           
+
         });
     });
 }
 
-// yearRange()
+yearRange()
 
 

@@ -1,6 +1,6 @@
 *{
-    margin: 0;  
-    padding: 0; 
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     font-family: Helvetica, Arial, sans-serif;
 }
@@ -167,7 +167,7 @@ table {
 
 .edit-avt{
     position: absolute;
-    bottom: 4px;  
+    bottom: 4px;
     right: 0;
 }
 
@@ -178,7 +178,7 @@ table {
 
 .user-name{
     font-size: 16px;
-    font-weight: 700;   
+    font-weight: 700;
 }
 
 .user-name a{
@@ -250,11 +250,9 @@ table {
     color: black;
     font-size: 14px;
 }
-
-.link-manage:hover{
+.link-manage:hover {
     cursor: pointer;
 }
-
 .link-manage.pay{
     background-color: #FFF7EA;
 }
@@ -290,10 +288,10 @@ table {
 }
 
 .search-item input{
-    flex: 1 ;   
+    flex: 1 ;
     outline: none;
     border: none;
-    padding:8px 12px; 
+    padding:8px 12px;
     font-size: 14px;
 }
 
@@ -303,7 +301,7 @@ table {
     right: 4px;
     border: none;
     outline: none;
-    background-color: var(--color-btn);  
+    background-color: var(--color-btn);
     color: white;
     padding: 2px 18px;
     border-radius: 4px;
@@ -321,7 +319,7 @@ table {
 }
 
 .btn-create-text{
-    font-weight: 700;   
+    font-weight: 700;
     font-size: 14px;
     text-transform: uppercase;
 }
@@ -332,7 +330,7 @@ table {
 
 .slider .owl-dots{
     position: absolute;
-    bottom: 0;  
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -376,7 +374,7 @@ table {
     font-size: 14px;
     text-align: center;
     color: black;
-    
+
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
@@ -384,7 +382,7 @@ table {
     height: 37px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    
+
 }
 
 .sub-menu-slider-link:hover span{
@@ -430,11 +428,11 @@ table {
     background: white!important;
     width: 34px;
     height: 34px;
-    display: flex;  
+    display: flex;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;
     border-radius: 50%;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.425); 
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.425);
     z-index: 2;
     transition: all 0.25s ease;
     border: none;
@@ -459,13 +457,13 @@ table {
 }
 
 .list-category .owl-nav button i{
-    color: #9C9C9C; 
+    color: #9C9C9C;
 
 }
 
-.col-2dot4, 
-.col-sm-2dot4, 
-.col-md-2dot4, 
+.col-2dot4,
+.col-sm-2dot4,
+.col-md-2dot4,
 .col-lg-2dot4,
 .col-xl-2dot4 {
     position: relative;
@@ -530,7 +528,7 @@ table {
     border-top-color: #f4f4f4;
     background-color: white;
 }
-  
+
 .product-item:hover{
     box-shadow: 0 1px 7px 0 rgba(0,0,0,.3);
     z-index: 10;
@@ -564,7 +562,7 @@ table {
     height: 37px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    
+
 }
 
 .product-title h3:hover a{
@@ -638,7 +636,7 @@ table {
     flex: 1;
     width: 60px;
     overflow: hidden;
-    white-space: nowrap; 
+    white-space: nowrap;
     text-overflow: ellipsis;
 }
 
@@ -647,8 +645,8 @@ table {
 }
 
 .title-footer{
-    font-size: 14px ;   
-    font-weight: 700;   
+    font-size: 14px ;
+    font-weight: 700;
     text-transform: uppercase;
 }
 
@@ -675,10 +673,10 @@ table {
 .header-mobile{
     position: fixed;
     width: 100%;
-    bottom: 0;  
+    bottom: 0;
     left: 0;
     right: 0;
-    background-color: #fff; 
+    background-color: #fff;
     min-height: 30px;
     z-index: 999;
     display: none;
@@ -766,8 +764,8 @@ table {
 .popup-filter{
     position: fixed;
     top: 0;
-    left: 0;    
-    right: 0;   
+    left: 0;
+    right: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
@@ -1019,7 +1017,7 @@ input[type="range"]::-moz-range-thumb{
     border-bottom: 1px solid #ddd;
 }
 .product-detail-heart{
-    bottom: 0; 
+    bottom: 0;
     right: 0;
     color: #c90927;
 }
@@ -1169,7 +1167,7 @@ input[type="range"]::-moz-range-thumb{
     right: 50%;
     background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
-    
+
     padding: 4px 8px;
     border-radius: 16px;
     font-size: 14px;
@@ -1236,7 +1234,7 @@ input[type="range"]::-moz-range-thumb{
 }
 
 .gallery-product-slide img:hover{
-    border: 2px solid #FE9910; 
+    border: 2px solid #FE9910;
 }
 
 .img-partner {
@@ -1362,7 +1360,7 @@ input[type="range"]::-moz-range-thumb{
     display: flex;
     border: none;
     outline: none;
-    background-color: white;    
+    background-color: white;
     cursor: pointer;
     font-size: 12px;
     width: max-content;
@@ -1399,7 +1397,7 @@ input[type="range"]::-moz-range-thumb{
 }
 
 .detail-product-evalution{
-    display: flex; 
+    display: flex;
     gap: 8px;
     font-size: 10px;
 }
@@ -1530,7 +1528,7 @@ input[type="range"]::-moz-range-thumb{
 }
 
 .button-call span, .button-chat span{
-    
+
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;

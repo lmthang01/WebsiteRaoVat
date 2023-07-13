@@ -41,9 +41,11 @@ class CategoryController extends Controller
 
             $category = Category::create($data);
         } catch (\Exception $exception) {
+            toastr()->error('Thêm mới thất bại!', 'Thông báo', ['timeOut' => 2000]);
             Log::error("ERROR => CategoryController@store => ". $exception->getMessage());
             return redirect()->route('get_admin.category.index');
         }
+        toastr()->success('Thêm mới thành công!', 'Thông báo', ['timeOut' => 2000]);
         return redirect()->route('get_admin.category.index');
     }
 
@@ -68,9 +70,11 @@ class CategoryController extends Controller
 
             Category::find($id)->update($data);
         } catch (\Exception $exception) {
+            toastr()->error('Cập nhật thất bại!', 'Thông báo', ['timeOut' => 2000]);
             Log::error("ERROR => CategoryController@store => ". $exception->getMessage());
             return redirect()->route('get_admin.category.update', $id);
         }
+        toastr()->success('Cập nhật thành công!', 'Thông báo', ['timeOut' => 2000]);
         return redirect()->route('get_admin.category.index');
     }
 
@@ -80,8 +84,11 @@ class CategoryController extends Controller
             if($category) $category->delete();
 
         } catch (\Exception $exception) {
+            toastr()->error('Xóa thất bại!', 'Thông báo', ['timeOut' => 2000]);
             Log::error("ERROR => CategoryController@delete => ". $exception->getMessage());
         }
+
+        toastr()->success('Xóa thành công!', 'Thông báo', ['timeOut' => 2000]);
         return redirect()->route('get_admin.category.index');
     }
 }

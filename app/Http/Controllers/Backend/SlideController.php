@@ -37,9 +37,12 @@ class SlideController extends Controller
 
             $slide = Slide::create($data);
         } catch (\Exception $exception) {
+            toastr()->error('Thêm mới thất bại!', 'Thông báo', ['timeOut' => 2000]);
             Log::error("ERROR => SlideController@store => ". $exception->getMessage());
             return redirect()->route('get_admin.slide.index');
         }
+
+        toastr()->success('Thêm mới thành công!', 'Thông báo', ['timeOut' => 2000]);
         return redirect()->route('get_admin.slide.index');
     }
 
@@ -63,9 +66,12 @@ class SlideController extends Controller
 
             Slide::find($id)->update($data);
         } catch (\Exception $exception) {
+            toastr()->error('Cập nhật thất bại!', 'Thông báo', ['timeOut' => 2000]);
             Log::error("ERROR => SlideController@store => ". $exception->getMessage());
             return redirect()->route('get_admin.slide.update', $id);
         }
+
+        toastr()->success('Cập nhật thành công!', 'Thông báo', ['timeOut' => 2000]);
         return redirect()->route('get_admin.slide.index');
     }
 
@@ -75,8 +81,11 @@ class SlideController extends Controller
             if($slide) $slide->delete();
 
         } catch (\Exception $exception) {
+            toastr()->error('Xóa thất bại!', 'Thông báo', ['timeOut' => 2000]);
             Log::error("ERROR => SlideController@delete => ". $exception->getMessage());
         }
+
+        toastr()->success('Xóa thành công!', 'Thông báo', ['timeOut' => 2000]);
         return redirect()->route('get_admin.slide.index');
     }
 }

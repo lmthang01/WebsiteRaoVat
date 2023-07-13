@@ -61,7 +61,7 @@ class RoleController extends Controller
         $permissionActive = DB::table('role_has_permissions')->where('role_id', $id)->pluck('permission_id')->toArray(); // Hiển thị role ở user
         // dd($permissionActive);
 
-        return view('backend.role.update', compact('role', 'permissions', 'permissionActive')); // compact(): Tạo mảng với giá trị 'category'
+        return view('backend.role.update', compact('role', 'permissions', 'permissionActive'));
     }
 
     public function update(RoleRequest $request, $id){
@@ -71,9 +71,7 @@ class RoleController extends Controller
 
             $update = Role::find($id)->update($data);
             
-            // if($update){
             //     dd($request->permissions);
-            // }
 
             if ($update && !empty($request->permissions))
             {
