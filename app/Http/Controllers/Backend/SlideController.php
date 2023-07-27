@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SlideRequest;
 use App\Models\Slide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -11,7 +12,7 @@ use Carbon\Carbon;
 class SlideController extends Controller
 {
     public function index(){
-        $slides = Slide::orderByDesc('id')->paginate(10); // Phân trang 20 dòng
+        $slides = Slide::orderByDesc('id')->paginate(10);
         $viewData = [
             'slides' => $slides
         ];
@@ -22,10 +23,10 @@ class SlideController extends Controller
         return view('backend.slide.create');
     }
 
-    public function store(Request $request){
+    public function store(SlideRequest $request){
         // dd($request->all());
         try {
-            $data = $request->except('_token', 'avatar'); // Lấy dữ liệu từ $request gửi lên trừ _token và avatar
+            $data = $request->except('_token', 'avatar');
             $data['created_at'] = Carbon::now();
 
             if($request->avatar){
@@ -48,10 +49,10 @@ class SlideController extends Controller
 
     public function edit($id){
         $slide = Slide::findOrFail($id);
-        return view('backend.slide.update', compact('slide')); // compact(): Tạo mảng với giá trị 'category'
+        return view('backend.slide.update', compact('slide'));
     }
 
-    public function update(Request $request, $id){
+    public function update(SlideRequest $request, $id){
         try {
             $data = $request->except('_token', 'avatar');
             $data['updated_at'] = Carbon::now();

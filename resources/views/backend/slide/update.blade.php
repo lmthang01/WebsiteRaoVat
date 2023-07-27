@@ -6,8 +6,9 @@
 </div>
 <div class="row">
     <div class="col-md-8">
-        @include('backend.slide.form')
+        <div class="container">
+            @include('backend.slide.form')
+        </div>
     </div>
 </div>
-
 @stop

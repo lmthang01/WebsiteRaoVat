@@ -1,4 +1,4 @@
-<form method="POST" action="" autocomplete="off" enctype="multipart/form-data">
+<form method="POST" action="" id="alert_form_submit" autocomplete="off" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-md-8">

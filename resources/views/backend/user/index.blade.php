@@ -45,7 +45,7 @@
                     <td>
                         <a href="{{ route('get_admin.user.update', $item->id) }}" class="btn btn-info" style="padding: 5px">Edit</a>
                         <a href="#">|</a>
-                        <a href="{{ route('get_admin.user.delete', $item->id) }}" class="btn btn-danger" style="padding: 5px">Delete</a>
+                        <a href="{{ route('get_admin.user.delete', $item->id) }}" class="btn btn-danger" style="padding: 5px" id="delete_alert" >Delete</a>
                     </td>
                 </tr>
             @endforeach

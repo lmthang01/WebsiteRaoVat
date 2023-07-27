@@ -6,8 +6,11 @@
 </div>
 <div class="row">
     <div class="col-md-8">
-        @include('backend.permission.form')
+        <div class="container">
+            @include('backend.permission.form')
+        </div>
     </div>
 </div>
+
 
 @stop

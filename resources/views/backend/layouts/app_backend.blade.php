@@ -21,7 +21,7 @@
     <link href="{{ asset('theme_admin/css/dashboard.css') }}" rel="stylesheet" />
     <style>
         .nav-tab-profile .nav-item.active {
-            border-bottom:  1px solid #dedede;
+            border-bottom: 1px solid #dedede;
         }
     </style>
 
@@ -32,11 +32,15 @@
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Hi - {{ Auth::user()->name ?? '[N/A]' }}</a>
         {{-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" /> --}}
         <div class="dropdown" style="margin-right: 10px;">
-            <button class="btn dropdown-toggle" style="background: none;color: white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="{{ pare_url_file(Auth::user()->avatar) }}" onerror="this.src='https://123code.net/images/preloader.png';" style="width: 40px;height: 40px;border-radius: 50%" alt="">
+            <button class="btn dropdown-toggle" style="background: none;color: white" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <img src="{{ pare_url_file(Auth::user()->avatar) }}"
+                    onerror="this.src='https://123code.net/images/preloader.png';"
+                    style="width: 40px;height: 40px;border-radius: 50%" alt="">
             </button>
             <div class="dropdown-menu" style="left: unset;right: 10px" aria-labelledby="dropdownMenu2">
-                <a href="{{ route('get_admin.profile.index') }}" class="dropdown-item" title="Cập nhật thông tin">Cập nhật thông tin</a>
+                <a href="{{ route('get_admin.profile.index') }}" class="dropdown-item" title="Cập nhật thông tin">Cập
+                    nhật thông tin</a>
                 <a href="{{ route('get_admin.logout') }}" title="Đăng xuất" class="dropdown-item">Đăng xuất</a>
             </div>
         </div>
@@ -49,7 +53,8 @@
                     <ul class="nav flex-column">
                         @foreach (config('nav') as $item)
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::route()->getName() === $item['route'] ? 'active' : '' }} " href="{{ route($item['route']) }}" title=" {{ $item['name'] }}">
+                                <a class="nav-link {{ Request::route()->getName() === $item['route'] ? 'active' : '' }} "
+                                    href="{{ route($item['route']) }}" title=" {{ $item['name'] }}">
                                     <span data-feather="{{ $item['icon'] }}"></span>
                                     {{ $item['name'] }}
                                 </a>
@@ -86,7 +91,6 @@
                                 </a>
                             </li> --}}
                     </ul>
-
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                         <span>------ Khác -------</span>
@@ -123,15 +127,16 @@
 
     {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> --}}
 
+    {{-- Jquery dùng cho location --}}
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
-
 
     <script src="{{ asset('theme_admin/js/popper.min.js') }}"></script>
     <script src="{{ asset('theme_admin/js/bootstrap.min.js') }}"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+
+    {{-- Chức năng Location --}}
     <script>
         feather.replace();
         $.ajaxSetup({
@@ -139,27 +144,21 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        // Load thành phố
         $(function() {
             $("#loadDistrict").change(function() {
                 console.log("------LOAD----------");
                 let province_id = $(this).find(":selected").val();
                 console.log("------province_id: ", province_id);
-
                 $.ajax({
-
                         url: "/admin/location/district",
                         data: {
-
                             province_id: province_id
                         },
-                        beforeSend: function(xhr) {
-                            // xhr.overrideMimeType("text/plain; charset=x-user-defined");
-                        }
+                        beforeSend: function(xhr) {}
                     })
                     .done(function(data) {
-                        console.log("------Data: ", data);
-
+                        // console.log("------Data: ", data);
                         let dataOptions = `<option value="">---Chọn quận huyện---</option>`;
                         data.map(function(index, key) {
                             dataOptions += `<option value=${index.id}>${index.name}</option>`
@@ -167,25 +166,18 @@
                         $("#districtsData").html(dataOptions);
                     });
             });
-
+            // Load quận huyện
             $("#loadDistrict").change(function() {
-
                 let district_id = $(this).find(":selected").val();
-
                 $.ajax({
-
                         url: "/admin/location/district",
                         data: {
-
                             district_id: district_id
                         },
-                        beforeSend: function(xhr) {
-                            // xhr.overrideMimeType("text/plain; charset=x-user-defined");
-                        }
+                        beforeSend: function(xhr) {}
                     })
                     .done(function(data) {
-                        console.log("------Data: ", data);
-
+                        // console.log("------Data: ", data);
                         let dataOptions = `<option value="">---Chọn phường xã---</option>`;
                         data.map(function(index, key) {
                             dataOptions += `<option value=${index.id}>${index.name}</option>`
@@ -194,31 +186,71 @@
                     });
             });
         })
-
-        $(".js-send-otp").click(function (event){
+        //  Gủi mail
+        $(".js-send-otp").click(function(event) {
             event.preventDefault();
             let email = $(this).attr('data-email');
-            console.log('------Email: ', email);
+            // console.log('------Email: ', email);
             $.ajax({
                 url: "/admin/profile/send-otp-email",
                 method: "POST",
                 data: {
                     email: email
                 },
-            }).done(function( response ) {
+            }).done(function(response) {
                 if (response.status === "success") {
                     alert("Gủi OTP thành công, xin vui lòng kiểm tra email: " + email);
                     return;
                 }
                 alert("Gủi OTP thất bại, xin vui lòng kiểm tra lại!")
-                console.log('---- data: ', data);
+                // console.log('---- data: ', data);
             });
         });
-
     </script>
 
-    <!-- Graphs -->
-    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.1/dist/Chart.min.js"></script> --}}
+    {{-- Confirm delete --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- Xử lý alert form delete, submit start --}}
+    <script type="text/javascript">
+        $(function() {
+            $(document).on('click', '#delete_alert', function(e) {
+                e.preventDefault();
+                var link = $(this).attr("href");
+                // console.log(link);
+                Swal.fire({
+                    title: 'Bạn có chắc muốn xóa không ?',
+                    text: "Bạn không thể khôi phục lại dữ liệu sau khi xóa !",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = link;
+
+                    }
+                })
+
+            })
+        });
+        $('#alert_form_submit').submit(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Bạn có muốn lưu dữ liệu không ?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        });
+    </script>
+    {{-- Xử lý alert form delete, submit end --}}
 </body>
 
 </html>

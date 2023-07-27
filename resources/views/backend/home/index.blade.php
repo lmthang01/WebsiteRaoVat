@@ -1,26 +1,26 @@
 @extends('backend.layouts.app_backend')
 @section('content')
     <h2>Thống kê</h2>
-
     <div class="row">
-        <div class="col-sm-3">
-            <div class="box p-3 mb-2 bg-primary text-white">
-                <h6>Thành viên <b>20</b></h6>
+        <div class="col-sm-4">
+            <div class="box p-3 mb-2 bg-primary text-white rounded text-center">
+                <a href="{{ route('get_admin.user.index') }}">
+                    <h5 class="text-white">Thành viên <b>{{ $toltalUsers }}</b></h5>
+                </a>
             </div>
         </div>
-        <div class="col-sm-3">
-            <div class="box p-3 mb-2 bg-danger text-white">
-                <h6>Tin đăng <b>100+</b></h6>
+        <div class="col-sm-4">
+            <div class="box p-3 mb-2 bg-danger text-white rounded text-center">
+                <a href="{{ route('get_admin.product.index') }}">
+                    <h5 class="text-white">Tin đăng <b>{{ $toltalProduct }}</b></h5>
+                </a>
             </div>
         </div>
-        <div class="col-sm-3">
-            <div class="box p-3 mb-2 bg-info text-white">
-                <h6>Báo cáo <b>100+</b></h6>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="p-3 mb-2 bg-secondary text-white">
-                <h6>User mới <b>100+</b></h6>
+        <div class="col-sm-4">
+            <div class="box p-3 mb-2 bg-info text-white rounded text-center">
+                <a href="{{ route('get_admin.category.index') }}">
+                    <h5 class="text-white">Danh mục <b>{{ $toltalCategory }}</b></h5>
+                </a>
             </div>
         </div>
     </div>

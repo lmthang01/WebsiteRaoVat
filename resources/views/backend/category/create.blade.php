@@ -6,7 +6,9 @@
 </div>
 <div class="row">
     <div class="col-md-8">
-        @include('backend.category.form')
+        <div class="container">
+            @include('backend.category.form')
+        </div>
     </div>
 </div>
 
