@@ -19,8 +19,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h2>Sản phẩm</h2>
-                    <a href="{{ route('get_admin.product.create') }}">Thêm mới</a>
+                    <h2>Danh sách sản phẩm</h2>
                 </div>
                 <div>
                     <form class="form-inline">
@@ -45,7 +44,7 @@
                     <table class="table table-striped table-sm">
                         <thead>
                         <tr>
-                            <th>#</th>
+                            <th>STT</th>
                             <th>Avatar</th>
                             <th style="width: 30%">Tên sản phẩm</th>
                             <th>Danh mục</th>
@@ -57,7 +56,7 @@
                         <tbody>
                         @foreach($products ?? [] as $item)
                             <tr>
-                                <td>{{ $item->id }}</td>
+                                <td>{{ ++$i }}</td>
                                 <td>
                                     <a href="{{ route('get.product.by_slug',['slug' => $item->slug]) }}" target="_blank" style="display: inline-block;position: relative">
                                         <img src="{{ pare_url_file($item->avatar) }}" style="width: 60px;height: 60px; border-radius: 10px" alt="">
@@ -88,6 +87,7 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $products->links() }}
             </div>
         </div>
     </div>

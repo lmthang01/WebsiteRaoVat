@@ -18,7 +18,7 @@ class CategoryController extends Controller
         $viewData = [
             'category' => $category
         ];
-        return view('backend.category.index', $viewData)->with('i', (request()->input('page', 1) -1) *5);
+        return view('backend.category.index', $viewData)->with('i', (request()->input('page', 1) -1) *10);
     }
 
     public function create(){

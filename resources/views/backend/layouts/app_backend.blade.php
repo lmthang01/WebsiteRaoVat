@@ -57,7 +57,7 @@
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                        @foreach (config('nav') as $item)
+                        {{-- @foreach (config('nav') as $item)
                             <li class="nav-item">
                                 <a class="nav-link {{ Request::route()->getName() === $item['route'] ? 'active' : '' }} "
                                     href="{{ route($item['route']) }}" title=" {{ $item['name'] }}">
@@ -66,42 +66,58 @@
                                 </a>
                             </li>
                         @endforeach
-                        {{-- <li class="nav-item">
-                                <a class="nav-link active" href="#">
-                                    <span data-feather="home"></span>
-                                    Tổng quan <span class="sr-only">(current)</span>
-                                </a>
-                            </li> --}}
-                        {{-- <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span data-feather="layers"></span>
-                                    Danh mục
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span data-feather="shopping-cart"></span>
-                                    Sản phẩm
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span data-feather="users"></span>
-                                    Thành viên
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span data-feather="bar-chart-2"></span>
-                                    Reports
-                                </a>
-                            </li> --}}
+                        <span>------ Khác -------</span> --}}
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::segment(2) == '' ? 'active' : '' }} "
+                                href="{{ route('get_admin.home') }}">
+                                <span data-feather="home"></span>
+                                Tổng quan <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::segment(2) == 'category' ? 'active' : '' }} "
+                                href="{{ route('get_admin.category.index') }}">
+                                <span data-feather="layers"></span>
+                                Danh mục
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::segment(2) == 'product' ? 'active' : '' }}"
+                                href="{{ route('get_admin.product.index') }}">
+                                <span data-feather="shopping-cart"></span>
+                                Sản phẩm
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::segment(2) == 'user' ? 'active' : '' }} "
+                                href="{{ route('get_admin.user.index') }}">
+                                <span data-feather="users"></span>
+                                Thành viên
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::segment(2) == 'slide' ? 'active' : '' }}"
+                                href="{{ route('get_admin.slide.index') }}">
+                                <span data-feather="server"></span>
+                                Slide quản bá
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::segment(2) == 'permission' ? 'active' : '' }}"
+                                href="{{ route('get_admin.permission.index') }}">
+                                <span data-feather="codepen"></span>
+                                Phân quyền
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::segment(2) == 'role' ? 'active' : '' }}"
+                                href="{{ route('get_admin.role.index') }}">
+                                <span data-feather="codesandbox"></span>
+                                Vai trò
+                            </a>
+                        </li>
                     </ul>
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>------ Khác -------</span>
-                    </h6>
-
                 </div>
             </nav>
 
@@ -133,7 +149,7 @@
 
     {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> --}}
 
-    
+
 
     {{-- Jquery dùng cho location --}}
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -293,7 +309,7 @@
             });
 
             // Xử lý hiển thị ban đầu 60 Ngày
-            function chart30daysoder(){
+            function chart30daysoder() {
                 var _token = $('input[name="_token"]').val();
                 $.ajax({
                     url: "/admin/filter-by-30days",
@@ -302,7 +318,7 @@
                     data: {
                         _token: _token,
                     },
-                    success:function(data) {
+                    success: function(data) {
                         console.log("==> Data: ", data);
                         var dataParse = JSON.parse(data);
                         chart.setData(dataParse);
@@ -311,14 +327,14 @@
             }
 
             // Xử lý lọc option
-            $('.dashboard-filter').change(function(){
+            $('.dashboard-filter').change(function() {
 
-               var dashboard_value = $(this).val();
-               var _token = $('input[name="_token"]').val();
+                var dashboard_value = $(this).val();
+                var _token = $('input[name="_token"]').val();
 
-                    //    alert(dashboard_value);
+                //    alert(dashboard_value);
 
-               $.ajax({
+                $.ajax({
                     url: "/admin/filter-by-option",
                     method: "POST",
                     dateType: "JSON",
@@ -326,7 +342,7 @@
                         dashboard_value: dashboard_value,
                         _token: _token,
                     },
-                    success:function(data) {
+                    success: function(data) {
                         // console.log("==> Data: ", data);
                         var dataParse = JSON.parse(data);
                         chart.setData(dataParse);

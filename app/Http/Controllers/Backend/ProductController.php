@@ -47,7 +47,7 @@ class ProductController extends Controller
             'status' => $status,
             'to_day' => $to_day,
         ];
-        return view('backend.product.index', $viewData)->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('backend.product.index', $viewData)->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     public function create()

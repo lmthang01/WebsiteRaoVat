@@ -20,7 +20,7 @@ class PermissionController extends Controller
         $viewData = [
             'permissions' => $permissions
         ];
-        return view('backend.permission.index', $viewData)->with('i', (request()->input('page', 1) -1) *5);
+        return view('backend.permission.index', $viewData)->with('i', (request()->input('page', 1) -1) *10);
     }
 
     public function create(){

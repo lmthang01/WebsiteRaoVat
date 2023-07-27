@@ -3,7 +3,7 @@
         <div class="col-sm-8">
             @csrf
             {{-- Lấy dữ liệu order_date của sản phẩm dùng cho thống kê --}}
-            <input type="hidden" name="order_date" value="{{ $product->order_date ?? '2023-07-28' }}">
+            <input type="hidden" name="order_date" value="{{ $product->order_date ?? '' }}">
             <input type="hidden" name="product_id" value="{{ $product->id ?? '' }}">
 
             <div class="form-group">

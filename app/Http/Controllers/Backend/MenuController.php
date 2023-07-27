@@ -18,7 +18,7 @@ class MenuController extends Controller
         $viewData = [
             'menus' => $menus
         ];
-        return view('backend.menu.index', $viewData)->with('i', (request()->input('page', 1) -1) *5);
+        return view('backend.menu.index', $viewData)->with('i', (request()->input('page', 1) -1) *10);
     }
 
     public function create(){

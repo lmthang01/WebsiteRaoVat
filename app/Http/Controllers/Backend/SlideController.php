@@ -16,7 +16,7 @@ class SlideController extends Controller
         $viewData = [
             'slides' => $slides
         ];
-        return view('backend.slide.index', $viewData)->with('i', (request()->input('page', 1) -1) *5);
+        return view('backend.slide.index', $viewData)->with('i', (request()->input('page', 1) -1) *10);
     }
 
     public function create(){

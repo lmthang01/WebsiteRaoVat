@@ -1,7 +1,7 @@
 @extends('backend.layouts.app_backend')
 @section('content')
-    <h2>Thống kê</h2>
-    <div class="row">
+    <h2>Tổng quan</h2>
+    <div class="row mt-3">
         <div class="col-sm-4">
             <div class="box p-3 mb-2 bg-primary text-white rounded text-center">
                 <a href="{{ route('get_admin.user.index') }}">

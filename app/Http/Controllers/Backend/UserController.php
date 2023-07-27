@@ -26,7 +26,7 @@ class UserController extends Controller
         $viewData = [
             'users' => $users
         ];
-        return view('backend.user.index', $viewData)->with('i', (request()->input('page', 1) -1) *5);
+        return view('backend.user.index', $viewData)->with('i', (request()->input('page', 1) -1) *10);
     }
 
     public function create(){

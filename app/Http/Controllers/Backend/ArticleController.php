@@ -34,7 +34,7 @@ class ArticleController extends Controller
             'status' => $status,
         ];
 
-        return view('backend.article.index', $viewData)->with('i', (request()->input('page', 1) -1) *5);
+        return view('backend.article.index', $viewData)->with('i', (request()->input('page', 1) -1) *10);
     }
 
     public function create(){

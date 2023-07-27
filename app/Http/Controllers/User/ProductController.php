@@ -34,7 +34,7 @@ class ProductController extends Controller
 
         $products = $products
             ->orderByDesc('id')
-            ->paginate(20);
+            ->paginate(5);
 
         $model  = new Product();
         $status = $model->getStatus();
@@ -45,7 +45,7 @@ class ProductController extends Controller
             'status'   => $status
         ];
 
-        return view('user.product.index', $viewData);
+        return view('user.product.index', $viewData)->with('i', (request()->input('page', 1) - 1) * 5);
     }
     public function create(){
         $categories = Category::all();
