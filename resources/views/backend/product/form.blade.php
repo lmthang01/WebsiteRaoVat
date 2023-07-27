@@ -3,8 +3,8 @@
         <div class="col-sm-8">
             @csrf
             {{-- Lấy dữ liệu order_date của sản phẩm dùng cho thống kê --}}
-            <input type="hidden" name="order_date"  value="{{$product->order_date ?? ''}}">
-            <input type="hidden" name="product_id"  value="{{$product->id ?? ''}}">
+            <input type="hidden" name="order_date" value="{{ $product->order_date ?? '2023-07-28' }}">
+            <input type="hidden" name="product_id" value="{{ $product->id ?? '' }}">
 
             <div class="form-group">
                 <label for="exampleInputEmail1">Tên sản phẩm</label>
@@ -93,7 +93,7 @@
                 <select name="category_id" class="form-control" id="">
                     <option value="">----Chọn danh mục----</option>
                     @foreach ($categories ?? [] as $item)
-                        <option value="{{ $item->id }}"
+                        <option value="{{ $item->id }}" {{ old('category_id') == $item->id ? 'selected' : '' }}
                             {{ ($product->category_id ?? 0) == $item->id ? 'selected' : '' }}>{{ $item->name }}
                         </option>
                     @endforeach
@@ -106,9 +106,33 @@
                 <label for="exampleInputEmail1">Trạng thái</label>
                 <select name="status" class="form-control" id="">
                     @foreach ($status ?? [] as $key => $item)
-                        <option value="{{ $key }}" {{ ($product->status ?? 0) == $key ? 'selected' : '' }}>
-                            {{ $item['name'] }}</option>
+                        @if ($key == 1 && ($product->status ?? 0) == $key)
+                            <option selected value="1">Khởi tạo</option>
+                            <option value="2">Duyệt</option>
+                            <option disabled value="3">Đã bán</option>
+                            <option value="-1">Hủy bỏ</option>
+                        @elseif($key == 2 && ($product->status ?? 0) == $key)
+                            <option disabled value="1">Khởi tạo</option>
+                            <option selected value="2">Duyệt</option>
+                            <option value="3">Đã bán</option>
+                            <option disabled value="-1">Hủy bỏ</option>
+                        @elseif($key == 3 && ($product->status ?? 0) == $key)
+                            <option disabled value="1">Khởi tạo</option>
+                            <option disabled value="2">Duyệt</option>
+                            <option selected value="3">Đã bán</option>
+                            <option disabled value="-1">Hủy bỏ</option>
+                        @elseif($key == -1 && ($product->status ?? 0) == $key)
+                            <option disabled value="1">Khởi tạo</option>
+                            <option disabled value="2">Duyệt</option>
+                            <option disabled value="3">Đã bán</option>
+                            <option selected value="-1">Hủy bỏ</option>
+                        @endif
+                        {{-- <option value="{{ $key }}" {{ ($product->status ?? 0) == $key ? 'selected' : '' }}>
+                            {{ $item['name'] }}</option> --}}
                     @endforeach
+                    @if (($product->status ?? 0) == 0)
+                         <option selected value="1">Khởi tạo</option>
+                    @endif
                 </select>
             </div>
             <div class="form-group">
@@ -170,28 +194,28 @@
 
 
 <!-- buffer.min.js and filetype.min.js are necessary in the order listed for advanced mime type parsing and more correct
-     preview. This is a feature available since v5.5.0 and is needed if you want to ensure file mime type is parsed
-     correctly even if the local file's extension is named incorrectly. This will ensure more correct preview of the
-     selected file (note: this will involve a small processing overhead in scanning of file contents locally). If you
-     do not load these scripts then the mime type parsing will largely be derived using the extension in the filename
-     and some basic file content parsing signatures. -->
+preview. This is a feature available since v5.5.0 and is needed if you want to ensure file mime type is parsed
+correctly even if the local file's extension is named incorrectly. This will ensure more correct preview of the
+selected file (note: this will involve a small processing overhead in scanning of file contents locally). If you
+do not load these scripts then the mime type parsing will largely be derived using the extension in the filename
+and some basic file content parsing signatures. -->
 <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.2/js/plugins/buffer.min.js"
     type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.2/js/plugins/filetype.min.js"
     type="text/javascript"></script>
 
 <!-- piexif.min.js is needed for auto orienting image files OR when restoring exif data in resized images and when you
-    wish to resize images before upload. This must be loaded before fileinput.min.js -->
+wish to resize images before upload. This must be loaded before fileinput.min.js -->
 <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.2/js/plugins/piexif.min.js"
     type="text/javascript"></script>
 
 <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview.
-    This must be loaded before fileinput.min.js -->
+This must be loaded before fileinput.min.js -->
 <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.2/js/plugins/sortable.min.js"
     type="text/javascript"></script>
 
 <!-- bootstrap.bundle.min.js below is needed if you wish to zoom and preview file content in a detail modal
-    dialog. bootstrap 5.x or 4.x is supported. You can also use the bootstrap js 3.3.x versions. -->
+dialog. bootstrap 5.x or 4.x is supported. You can also use the bootstrap js 3.3.x versions. -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
 </script>
 

@@ -331,5 +331,48 @@
 <script src="{{ asset('assets/css/bootstrap-4.0.0-dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/css/OwlCarousel2-2.3.4/dist/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
+{{-- Confirm delete --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{{-- Xử lý alert form delete, submit start --}}
+<script type="text/javascript">
+    $(function() {
+        $(document).on('click', '#delete_alert', function(e) {
+            e.preventDefault();
+            var link = $(this).attr("href");
+            // console.log(link);
+            Swal.fire({
+                title: 'Bạn có chắc muốn xóa không ?',
+                text: "Bạn không thể khôi phục lại dữ liệu sau khi xóa !",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = link;
+
+                }
+            })
+
+        })
+    });
+    $('#alert_form_submit').submit(function(e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Bạn có muốn lưu dữ liệu không ?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+    });
+</script>
+{{-- Xử lý alert form delete, submit end --}}
 </body>
 </html>

@@ -39,10 +39,13 @@ class ProductController extends Controller
         $model = new Product();
         $status = $model->getStatus();
 
+        $to_day = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
+
         $viewData = [
             'products' => $products,
             'query' => $request->query(),
-            'status' => $status
+            'status' => $status,
+            'to_day' => $to_day,
         ];
         return view('backend.product.index', $viewData)->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -60,10 +63,9 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         try {
-            $data = $request->except('_token', 'avatar');
+            $data = $request->except('_token', 'avatar', 'order_date');
             $data['slug'] = Str::slug($request->name);
             $data['created_at'] = Carbon::now();
-
             $data['order_date'] = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d'); // Dùng cho thống kê
 
             if ($request->avatar) {
@@ -72,7 +74,36 @@ class ProductController extends Controller
                     $data['avatar'] = $file['name'];
                 }
             }
+            // dd($request->all());
+            // Thống kế start
+            $order_date = $data['order_date'];
+            $statistic = Statistic::where('order_date', $order_date)->get();
 
+            if ($statistic) {
+                $statistic_count = $statistic->count();
+            } else {
+                $statistic = 0;
+            }
+
+            $total_product = 0;
+
+            if ($request->status == 1) {
+
+                $total_product = Product::select('id')->where('order_date', $order_date)->count();
+                $total_product += 1;
+
+                if ($statistic_count > 0) {
+                    $statistic_update = Statistic::where('order_date', $order_date)->first();
+                    $statistic_update->total_product = $total_product;
+                    $statistic_update->save();
+                } else {
+                    $statistic_new = new Statistic();
+                    $statistic_new->order_date = $order_date;
+                    $statistic_new->total_product = $total_product;
+                    $statistic_new->save();
+                }
+            }
+            // Thống kế end
             $data['user_id'] = Auth::user()->id; // Hiển thị user đăng bán
 
             $product = Product::create($data);
@@ -82,10 +113,10 @@ class ProductController extends Controller
             }
         } catch (\Exception $exception) {
             Log::error("ERROR => ProductController@store => " . $exception->getMessage());
-            toastr()->error('Thêm mới thất bại!', 'Thông báo', ['timeOut' => 2000]);
+            toastr()->error('Thêm mới thất bại!', 'Thông báo', ['timeOut' => 1000]);
             return redirect()->route('get_admin.product.index');
         }
-        toastr()->success('Thêm mới thành công!', 'Thông báo', ['timeOut' => 2000]);
+        toastr()->success('Thêm mới thành công!', 'Thông báo', ['timeOut' => 1000]);
         return redirect()->route('get_admin.product.index');
     }
 
@@ -145,8 +176,8 @@ class ProductController extends Controller
 
             $total_product = 0; // Tổng sản phẩm (tin đăng)
             $success = 0; // Được duyệt active
-            // $finish = 0;    // Hoàn thành => user đã bán
-            // $cancel = 0;  // Hủy bỏ => Admin đã hủy
+            $finish = 0;    // Hoàn thành => user đã bán
+            $cancel = 0;  // Hủy bỏ => Admin đã hủy
 
             if ($request->status == 2) { // => Cập nhật active sản phẩm (tin đăng)
 
@@ -159,15 +190,55 @@ class ProductController extends Controller
 
                 if ($statistic_count > 0) {
                     $statistic_update = Statistic::where('order_date', $order_date)->first();
-                    // $statistic_update->id_statistical = $statistic_update->id_statistical;
                     $statistic_update->total_product = $total_product - 1;
                     $statistic_update->success = $success;
                     $statistic_update->save();
                 } else {
                     $statistic_new = new Statistic();
                     $statistic_new->order_date = $order_date;
-                    $statistic_new->total_product = $total_product - 1 ;
+                    $statistic_new->total_product = $total_product - 1;
                     $statistic_new->success = $success;
+                    $statistic_new->save();
+                }
+            } else if ($request->status == -1) {
+
+                $total_product = Product::select('id')->where('order_date', $order_date)->count();
+                $cancel = Statistic::select('cancel')->where('order_date', $order_date)->value('cancel');
+
+                $total_product += 1;
+                $cancel += 1;
+
+                if ($statistic_count > 0) {
+                    $statistic_update = Statistic::where('order_date', $order_date)->first();
+                    $statistic_update->total_product = $total_product - 1;
+                    $statistic_update->cancel = $cancel;
+                    $statistic_update->save();
+                } else {
+                    $statistic_new = new Statistic();
+                    $statistic_new->order_date = $order_date;
+                    $statistic_new->total_product = $total_product - 1;
+                    $statistic_new->cancel = $cancel;
+                    $statistic_new->save();
+                }
+            } else if ($request->status == 3) {
+
+                $finish = Statistic::select('finish')->where('order_date', $order_date)->value('finish');
+                $finish += 1;
+                $statistic_update = Statistic::where('order_date', $order_date)->first();
+                $statistic_update->finish = $finish;
+                $statistic_update->save();
+            } else {
+                $total_product = Product::select('id')->where('order_date', $order_date)->count();
+                $total_product += 1;
+
+                if ($statistic_count > 0) {
+                    $statistic_update = Statistic::where('order_date', $order_date)->first();
+                    $statistic_update->total_product = $total_product - 1;
+                    $statistic_update->save();
+                } else {
+                    $statistic_new = new Statistic();
+                    $statistic_new->order_date = $order_date;
+                    $statistic_new->total_product = $total_product - 1;
                     $statistic_new->save();
                 }
             }
@@ -181,11 +252,11 @@ class ProductController extends Controller
             }
         } catch (\Exception $exception) {
             Log::error("ERROR => ProductController@update => " . $exception->getMessage());
-            toastr()->error('Cập nhật thất bại!', 'Thông báo', ['timeOut' => 2000]);
+            toastr()->error('Cập nhật thất bại!', 'Thông báo', ['timeOut' => 1000]);
             return redirect()->route('get_admin.product.update', $id);
         }
 
-        toastr()->success('Cập nhật thành công!', 'Thông báo', ['timeOut' => 2000]);
+        toastr()->success('Cập nhật thành công!', 'Thông báo', ['timeOut' => 1000]);
         return redirect()->route('get_admin.product.index');
     }
 
@@ -196,10 +267,10 @@ class ProductController extends Controller
             if ($product) $product->delete();
         } catch (\Exception $exception) {
             Log::error("ERROR => ProductController@delete => " . $exception->getMessage());
-            toastr()->error('Xóa thất bại!', 'Thông báo', ['timeOut' => 2000]);
+            toastr()->error('Xóa thất bại!', 'Thông báo', ['timeOut' => 1000]);
         }
 
-        toastr()->success('Xóa thành công!', 'Thông báo', ['timeOut' => 2000]);
+        toastr()->success('Xóa thành công!', 'Thông báo', ['timeOut' => 1000]);
         return redirect()->route('get_admin.product.index');
     }
 

@@ -1,4 +1,4 @@
-<form method="POST" action="" autocomplete="off" enctype="multipart/form-data">
+<form method="POST" id="alert_form_submit" action="" autocomplete="off" enctype="multipart/form-data">
     <div class="row">
         <div class="col-sm-8">
             @csrf
@@ -89,7 +89,7 @@
                 <select name="category_id" class="form-control" id="">
                     <option value="">----Chọn danh mục----</option>
                     @foreach ($categories ?? [] as $item)
-                        <option value="{{ $item->id }}"
+                        <option value="{{ $item->id }}" {{ old('category_id') == $item->id ? 'selected' : '' }}
                             {{ ($product->category_id ?? 0) == $item->id ? 'selected' : '' }}>{{ $item->name }}
                         </option>
                     @endforeach
@@ -98,15 +98,6 @@
                     <small id="emailHelp" class="form-text text-danger">{{ $errors->first('category_id') }}</small>
                 @enderror
             </div>
-            {{-- <div class="form-group">
-                <label for="exampleInputEmail1">Trạng thái</label>
-                <select name="status" class="form-control" id="">
-                    @foreach ($status ?? [] as $key => $item)
-                        <option value="{{ $key }}" {{ ($product->status ?? 0) == $key ? 'selected' : '' }}>
-                            {{ $item['name'] }}</option>
-                    @endforeach
-                </select>
-            </div> --}}
             <div class="form-group">
                 <label for="exampleInputEmail1">Giá sản phẩm</label>
                 <input type="number" name="price" placeholder="0" class="form-control"

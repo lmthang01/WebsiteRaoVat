@@ -278,7 +278,7 @@
 
                 element: 'chart',
 
-                lineColors: ['#819C79', '#fc8710', '#FF6541', '#A4ADD3', '#766B56'],
+                barColors: ['#f7ed31', '#1168f5', '#11f528', '#f53711'],
 
                 parseTime: false,
 

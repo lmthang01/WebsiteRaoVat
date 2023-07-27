@@ -15,7 +15,11 @@
             </div>
         </div>
         <div class="row">
-            @include('user.product.form');
+            <div class="col-md-12">
+                <div class="container">
+                    @include('backend.product.form')
+                </div>
+            </div>
         </div>
     </div>
     
