@@ -167,6 +167,17 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ch
 
         Route::get('delete/{id}', [RoleController::class, 'delete'])->name('get_admin.role.delete');
     });
+
+    // Statistic 
+
+    // Lọc từ ngày đến ngày
+    Route::post('filter-by-date', [BackendHomeController::class, 'filter_by_date'])->name('get_admin.filter_by_date');
+
+    // Lọc theo option
+    Route::post('filter-by-option', [BackendHomeController::class, 'filter_by_option'])->name('get_admin.filter_by_option');
+
+    // Hiển thị ban đầu lọc 30 ngày gần nhất
+    Route::post('filter-by-30days', [BackendHomeController::class, 'filter_by_30days'])->name('get_admin.filter_by_30days');
 });
 
 // Frontend User

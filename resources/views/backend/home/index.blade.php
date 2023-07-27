@@ -25,7 +25,19 @@
         </div>
     </div>
 
-    <div class="row mt-5">
+    <div class="container mt-3">
+        <h4>Thống kê</h4>
+        <div class="row mt-3">
+            <div class="col">
+                @include('backend.home.form')
+            </div>
+            <div class="col-md-12">
+                <div id="chart" style="height: 250px;"></div>
+            </div>
+        </div>
+    </div>
+
+    {{-- <div class="row mt-5">
         <div class="col-md-6">
             <h2>Thành viên mới</h2>
             <div class="table-responsive">
@@ -92,5 +104,5 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> --}}
 @stop

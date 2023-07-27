@@ -47,7 +47,6 @@ class UserController extends Controller
             $data['password'] = bcrypt(Carbon::now());
             $data['email_verified_at'] = Carbon::now();
             $data['status'] = $request->status ?? 1;
-             
 
             if($request->avatar){
                 $file = upload_image('avatar');

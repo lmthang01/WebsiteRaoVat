@@ -2,6 +2,10 @@
     <div class="row">
         <div class="col-sm-8">
             @csrf
+            {{-- Lấy dữ liệu order_date của sản phẩm dùng cho thống kê --}}
+            <input type="hidden" name="order_date"  value="{{$product->order_date ?? ''}}">
+            <input type="hidden" name="product_id"  value="{{$product->id ?? ''}}">
+
             <div class="form-group">
                 <label for="exampleInputEmail1">Tên sản phẩm</label>
                 <input type="text" name="name" placeholder="Tên sản phẩm" class="form-control"

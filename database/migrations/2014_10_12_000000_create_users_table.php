@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('avatar')->nullable();
             $table->tinyInteger('status')->nullable()->default(0);
+            $table->date('order_date')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

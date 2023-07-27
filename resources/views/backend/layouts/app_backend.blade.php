@@ -25,6 +25,12 @@
         }
     </style>
 
+    {{-- Hiển thị ngày trong input CSS --}}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    {{-- Biểu đồ morris CSS --}}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+
 </head>
 
 <body>
@@ -127,6 +133,8 @@
 
     {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> --}}
 
+    
+
     {{-- Jquery dùng cho location --}}
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
@@ -208,6 +216,9 @@
         });
     </script>
 
+
+
+
     {{-- Confirm delete --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- Xử lý alert form delete, submit start --}}
@@ -251,6 +262,132 @@
         });
     </script>
     {{-- Xử lý alert form delete, submit end --}}
+
+    {{-- Biểu đồ Morris Script --}}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
+    {{-- Xử lý chart, filter start --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            chart30daysoder();
+
+            var chart = new Morris.Bar({
+
+                element: 'chart',
+
+                lineColors: ['#819C79', '#fc8710', '#FF6541', '#A4ADD3', '#766B56'],
+
+                parseTime: false,
+
+                hideHover: 'auto',
+
+                xkey: 'date_create',
+
+                ykeys: ['total_product', 'success', 'finish', 'cancel'],
+                labels: ['Tổng tin đăng', 'Được duyệt', 'Đã bán', 'Không được duyệt'],
+
+
+            });
+
+            // Xử lý hiển thị ban đầu 60 Ngày
+            function chart30daysoder(){
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "/admin/filter-by-30days",
+                    method: "POST",
+                    dateType: "JSON",
+                    data: {
+                        _token: _token,
+                    },
+                    success:function(data) {
+                        console.log("==> Data: ", data);
+                        var dataParse = JSON.parse(data);
+                        chart.setData(dataParse);
+                    }
+                });
+            }
+
+            // Xử lý lọc option
+            $('.dashboard-filter').change(function(){
+
+               var dashboard_value = $(this).val();
+               var _token = $('input[name="_token"]').val();
+
+                    //    alert(dashboard_value);
+
+               $.ajax({
+                    url: "/admin/filter-by-option",
+                    method: "POST",
+                    dateType: "JSON",
+                    data: {
+                        dashboard_value: dashboard_value,
+                        _token: _token,
+                    },
+                    success:function(data) {
+                        // console.log("==> Data: ", data);
+                        var dataParse = JSON.parse(data);
+                        chart.setData(dataParse);
+                    }
+                });
+            });
+
+            // Xử lý khi nhấn nút lọc dữ liệu
+            $("#btn-dashboard-filter").click(function() {
+
+                var _token = $('input[name="_token"]').val();
+                var from_date = $('#datepicker').val();
+                var to_date = $('#datepicker2').val();
+
+                $.ajax({
+                    url: "/admin/filter-by-date",
+                    method: "POST",
+                    dateType: "JSON",
+                    data: {
+                        from_date: from_date,
+                        to_date: to_date,
+                        _token: _token,
+                    },
+                    success: function(data) {
+                        // console.log("==> Data: ", data);
+                        var dataParse = JSON.parse(data);
+                        chart.setData(dataParse);
+                    }
+                });
+            });
+        });
+    </script>
+    {{-- Xử lý chart, filter end --}}
+
+    {{-- Hiển thị ngày trong input start --}}
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+        // Xử lý lọc từ ngày đến ngày
+        $(function() {
+            $("#datepicker").datepicker({
+                prevText: "Tháng trước",
+                nextText: "Tháng sau",
+                dateFormat: "yy-mm-dd",
+                dateNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7",
+                    "Chủ nhật"
+                ],
+                duration: "slow"
+            });
+
+            $("#datepicker2").datepicker({
+                prevText: "Tháng trước",
+                nextText: "Tháng sau",
+                dateFormat: "yy-mm-dd",
+                dateNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7",
+                    "Chủ nhật"
+                ],
+                duration: "slow"
+            });
+        });
+    </script>
 </body>
 
 </html>
