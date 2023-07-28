@@ -24,7 +24,7 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->guard_name }}</td>
                             <td>{{ $item->description }}</td>
-                            <td>{{ $item->created_at }}</td>
+                            <td>{{ $item->created_at->format('Y-m-d') }}</td>
                             <td>
                                 <a href="{{ route('get_admin.role.update', $item->id) }}" class="btn btn-info"
                                     style="padding: 5px">Edit</a>

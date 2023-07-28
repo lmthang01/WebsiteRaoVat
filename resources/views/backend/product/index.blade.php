@@ -64,7 +64,7 @@
                         </span>
                     </td>
                     <td>{{ $item->description }}</td>
-                    <td>{{ $item->created_at }}</td>
+                    <td>{{ $item->created_at->format('Y-m-d') }}</td>
                     <td>
                         <a href="{{ route('get_admin.product.update', $item->id) }}" class="btn btn-info" style="padding: 5px">Edit</a>
                         <a href="#">|</a>

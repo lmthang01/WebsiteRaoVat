@@ -6,9 +6,8 @@
                 <div class="col-lg-2 d-flex align-items-center justify-content-center justify-content-md-start">
                     <div class="header-logo">
                         <a href="/">
-
-                            <img src="{{ asset('assets/img/transparent_logo.webp') }} " alt="" width="100%"
-                                height="35px">
+                            <img src="{{ asset('assets/img/stu2hand_logo.png') }}" alt="" width="100%"
+                                height="45px">
                         </a>
                     </div>
                 </div>
@@ -63,8 +62,8 @@
                                                 <a href="#" class="user-avt-main">
                                                     <img src="{{ pare_url_file(\Auth::user()->avatar ?? '') }}"
                                                         onerror="this.src='https://123code.net/images/preloader.png';"
-                                                        alt="" width="34px" height="34px">
-                                                    <img src="{{ asset('/assets/img/25118033.jpg') }}" alt="" width="100%">
+                                                        alt="" width="100%" height="100%">
+                                                    {{-- <img src="{{ asset('/assets/img/25118033.jpg') }}" alt="" width="100%"> --}}
                                                 </a>
                                                 <img src="{{ asset('/assets/img/edit-filled.svg') }}" alt="edit" class="edit-avt">
                                             </div>
@@ -191,7 +190,7 @@
                 <div class="col-lg-10">
                     <div class="search-item position-relative d-flex">
                         <form style="width: 100%" action="{{ route('get.search') }}">
-                            <input type="text" name="k" value="{{ Request::get('k') }}" placeholder="Tìm kiếm trên Chợ Tốt" style="width: 100%">
+                            <input type="text" name="k" value="{{ Request::get('k') }}" placeholder="Tìm kiếm trên Stu2hand" style="width: 100%">
                             <button class="position-absolute btn-search">
                                 <span><i class="fa-solid fa-magnifying-glass"></i></span>
                             </button>

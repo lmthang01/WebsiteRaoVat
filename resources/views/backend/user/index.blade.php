@@ -41,7 +41,7 @@
                             @endforeach
                         @endif
                     </td>
-                    <td>{{ $item->created_at }}</td>
+                    <td>{{ $item->created_at->format('Y-m-d') }}</td>
                     <td>
                         <a href="{{ route('get_admin.user.update', $item->id) }}" class="btn btn-info" style="padding: 5px">Edit</a>
                         <a href="#">|</a>

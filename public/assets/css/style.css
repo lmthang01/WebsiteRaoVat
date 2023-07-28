@@ -46,7 +46,8 @@ table {
 }}
 
 .wrapper_header{
-    background-color: var(--bg-header);
+    /* background-color: var(--bg-header); */
+    background-color: #1f7ed0;
     position: fixed;
     top: 0;
     left: 0;
@@ -62,14 +63,14 @@ table {
 }
 
 .link-menu{
-    color: black;
+    color: white;
     font-size: 14px;
     line-height: 36px;
 }
 
 
 .link-menu:hover{
-    opacity: .7;
+    opacity: 0.7;
 }
 
 .link-menu svg{
@@ -301,7 +302,8 @@ table {
     right: 4px;
     border: none;
     outline: none;
-    background-color: var(--color-btn);
+    /* background-color: var(--color-btn); */
+    background-color: #1f7ed0;
     color: white;
     padding: 2px 18px;
     border-radius: 4px;
@@ -310,12 +312,13 @@ table {
 
 .btn-create{
     color: white;
-    background-color: var(--color-btn);
+    background-color: #1f7ed0;
     border-radius: 4px;
     cursor: pointer;
 }
 .btn-create:hover{
-    background-color: var(--color-hover-btn);
+    /* background-color: var(--color-hover-btn); */
+    background-color: #acd8f2;
 }
 
 .btn-create-text{
@@ -641,7 +644,7 @@ table {
 }
 
 .wrapper_footer{
-    background-color: #fff;
+    background-color: #1f7ed0;
 }
 
 .title-footer{
