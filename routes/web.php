@@ -225,4 +225,9 @@ Route::group(['namespace' => 'User', 'prefix' => 'account'], function () {
     Route::get('product/delete/{id}', [UserProductController::class, 'delete'])->name('get.user.product_delete');
     Route::post('product/update/{id}', [UserProductController::class, 'update']);
 
+    // Ẩn tin đã bán
+
+    Route::get('product/sold/{id}', [UserProductController::class, 'sold'])->name('get.user.product_sold');
+
+
 });

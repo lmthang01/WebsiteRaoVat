@@ -109,7 +109,7 @@
                     <div class="category">
                         <h3 class="title">Khám phá danh mục</h3>
                         <ul class="list-category owl-carousel position-relative">
-                            @foreach ($categories->chunk(2) ?? [] as $category)
+                            @foreach ($categories->chunk(1) ?? [] as $category)
                                 <li class="col-category d-flex flex-column align-items-center">
                                     @foreach ($category as $item)
                                         <a href="{{ route('get.category.by_slug', ['slug' => $item->slug]) }}"
@@ -186,24 +186,25 @@
                                     </div>
                                 </div>
                                 <span class="product-price ">
-                                    {{ number_format($item->price,0,',','.') }} đ
+                                    {{ number_format($item->price, 0, ',', '.') }} đ
                                 </span>
                             </div>
                             <div class="product-footer d-flex align-items-center">
                                 <a href="#" class="d-flex align-items-center">
-                                    <img src="./assets/img/user.svg" alt="" width="16px" height="16px">
+                                    <img src="{{ pare_url_file($item->user->avatar ?? '') }}"
+                                        onerror="this.src='{{ asset('/assets/img/default_user.png') }}';" alt=""
+                                        width="25px" height="25px" style="border-radius: 50%">
                                 </a>
-                                <div class="dot-divider">
-
-                                </div>
+                                {{-- <div class="dot-divider">
+                                </div> --}}
                                 <div class="product-time mx-1 d-flex align-items-center">
-                                    <span>{{ $item->created_at->format('d-m-Y') }}</span>
+                                    <span>{{ $item->created_at->diffForHumans() }} : </span> 
+                                    {{-- <span>{{ $item->created_at->format('d-m-Y') }}</span> --}}
                                 </div>
-                                <div class="dot-divider">
-
-                                </div>
+                                {{-- <div class="dot-divider">
+                                </div> --}}
                                 <div class="product-address mx-1 d-flex align-items-center">
-                                    <a href="">{{ $item->province->name ?? '' }}</a>
+                                    <span>{{ $item->province->name ?? '' }}</span>
                                 </div>
                             </div>
                         </div>
@@ -214,7 +215,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h4 class="text-more">
-                        <a href="#">Xem thêm</a>
+                        {{-- <a href="#">Xem thêm</a> --}}
                     </h4>
                 </div>
             </div>

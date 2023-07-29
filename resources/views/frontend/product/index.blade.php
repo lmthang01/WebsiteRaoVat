@@ -29,8 +29,8 @@
                             <div class="gallery-product-slide owl-carousel">
                                 @foreach ($images ?? [] as $item)
                                     <div>
-                                        <img src="{{ pare_url_file($item) }}" alt="" width="100%" data-image-number="1"
-                                            onmouseover="previewImage(this)">
+                                        <img src="{{ pare_url_file($item) }}" alt="" width="100%"
+                                            data-image-number="1" onmouseover="previewImage(this)">
                                     </div>
                                 @endforeach
                             </div>
@@ -39,22 +39,21 @@
 
                     <div class="detail-product-title">
                         <h1>
-                            <div class="img-partner">
-
-                            </div>
+                            {{-- <div class="img-partner">
+                            </div> --}}
                             {{ $productDetail->name }}
                         </h1>
                         <div class="price-wrapper d-flex justify-content-between">
                             <p class="product-detail-price">{{ number_format($productDetail->price, 0, ',', '.') }} đ</p>
-                            <div>
-                                <a href="#">
+                            <div class="btn">
+                                <a href="#" style="color: #007bff">
+                                    <i class="fa-sharp fa-regular fa-heart"></i>
+                                    <span style="font-size: 12px;">Lưu tin</span>
+                                </a>
+                                {{-- <a href="#" class="ml-2 d-inline-block">
                                     <i class="fa-regular fa-share-from-square"></i>
                                     <span style="font-size: 12px;">Chia sẻ</span>
-                                </a>
-                                <a href="#" class="ml-2 d-inline-block">
-                                    <i class="fa-regular fa-share-from-square"></i>
-                                    <span style="font-size: 12px;">Chia sẻ</span>
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                         <div class="description">
@@ -74,7 +73,7 @@
                         {!! $productDetail->content !!}
                         <a href="#">Nhấn để hiện số</a>
                     </div>
-                    <div class="detail-product-parameter">
+                    {{-- <div class="detail-product-parameter">
                         <h3 class="title">
                             Thông số kỹ thuật
                         </h3>
@@ -93,8 +92,8 @@
                                 </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="detail-product-service">
+                    </div> --}}
+                    {{-- <div class="detail-product-service">
                         <h3 class="title">
                             Các dịch vụ tiện ích
                         </h3>
@@ -108,7 +107,7 @@
                                 <span>Định giá xe cũ</span>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="col-lg-4 no-padding">
                     <div class="sidebar">
@@ -116,7 +115,8 @@
                         <div class="detail-product-info-user">
                             <a href="#" class="d-flex">
                                 <div class="product-info-user_thumbnail">
-                                    <img src="{{ pare_url_file($productDetail->user->avatar ?? "") }}" width="100%" style="border-radius: 50%">
+                                    <img src="{{ pare_url_file($productDetail->user->avatar ?? '') }}" width="100%"
+                                        style="border-radius: 50%">
                                 </div>
                                 <div class="product-info-user-main">
                                     <div class="d-flex">
@@ -124,40 +124,37 @@
                                             {{ $productDetail->user->name ?? '' }}
                                         </h3>
                                         <button>
-                                            <span>Xem cửa hàng</span>
+                                            <span>Xem trang</span>
                                             <span><i class="fa-solid fa-angle-right"></i></span>
                                         </button>
                                     </div>
+
                                     <div>
                                         <span class="product-info-user-main-icon"><i class="fa-solid fa-shop"></i></span>
-                                        <span>Cửa hàng</span>
+                                        <span>Trường CNTT - CTU</span>
                                     </div>
-                                    <div>
+                                    {{-- <div>
                                         <span class="product-info-user-main-icon" style="font-size: 8px;"><i
                                                 class="fa-solid fa-circle"></i></span>
                                         <span>Hoạt động 12 giờ trước</span>
-                                    </div>
-                                    <div class="detail-product-evalution">
+                                    </div> --}}
+                                    <div class="detail-product-evalution ml-2 mt-1">
                                         <div class="d-flex align-items-center ">
-
                                             <span><i class="fa-solid fa-star"></i></span>
                                             <span><i class="fa-solid fa-star"></i></span>
                                             <span><i class="fa-solid fa-star"></i></span>
                                             <span><i class="fa-solid fa-star"></i></span>
                                             <span><i class="fa-solid fa-star"></i></span>
                                         </div>
-                                        <span>4.3</span>
-
+                                        {{-- <span>4.3</span> --}}
                                     </div>
                                 </div>
                             </a>
                         </div>
-                        <div class="detail-product-ispartner-wrapper">
+                        {{-- <div class="detail-product-ispartner-wrapper">
                             <div class="detail-product-ispartner">
-
                                 <div class="ispartner-main d-flex align-items-center">
                                     <div class="ispartner-icon">
-
                                     </div>
                                     <span class="ispartner-text font-weight-bold">
                                         Là Đối Tác Chợ Tốt
@@ -184,19 +181,19 @@
                                 </div>
                                 <a href="#" class="ispartner-link">Tìm hiểu thêm</a>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="contact-with-saler">
                             <div class="chat">
                                 <div class="chat-title">
                                     <span>Liên hệ với người bán</span>
-                                    <span
+                                    {{-- <span
                                         style="color: #9b9b9b;
                                     font-size: 12px;
                                     display: flex;
                                     font-weight: 400;">Phản
-                                        hồi</span>
+                                        hồi</span> --}}
                                 </div>
-                                <div class="chat-main">
+                                {{-- <div class="chat-main">
                                     <ul class="list-chat">
                                         <li class="item-chat">
                                             Xe còn hay đã bán rồi ạ?
@@ -211,23 +208,77 @@
                                             Xe còn hay đã bán rồi ạ?
                                         </li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
-                            <div class="lead-button">
+                            @if (Auth::check())
+                                @if (Auth::user()->id === $productDetail->user->id)
+                                    <h4>Sản phẩm của bạn đăng</h4>
+                                    <div class="lead-button">
+                                        <a id="delete_alert" href="{{ route('get.user.product_sold', $productDetail->id) }}" class="button-call d-flex">
+                                            <div>
+                                                <span><i class="fa-sharp fa-regular fa-eye-slash"></i></span>
+                                            </div>
+                                            <span>Đã bán / Ẩn tin</span>
+                                        </a>
+                                        <a href="{{ route('get.user.product_update', $productDetail->id) }}" class="button-chat d-flex">
+                                            <div>
+                                                <span><i class="fa-regular fa-pen-to-square"></i></span>
+                                            </div>
+                                            <span>Sửa tin</span>
+                                        </a>
+                                    </div>
+                                @else
+                                    <h4>Sản phẩm không phải của bạn</h4>
+                                    <div class="lead-button">
+                                        <a href="#" class="button-call d-flex">
+                                            <div>
+                                                <span><i class="fa-solid fa-phone-volume"></i></span>
+                                                <span
+                                                    class="ml-2 d-inline-block">{{ $productDetail->user->phone ?? '' }}</span>
+                                            </div>
+                                            <span>Số để gọi</span>
+                                        </a>
+                                        <a href="#" class="button-chat d-flex">
+                                            <div>
+                                                <span><i class="fa-brands fa-rocketchat"></i></span>
+                                            </div>
+                                            <span>Chat với người bán</span>
+                                        </a>
+                                    </div>
+                                @endif
+                            @else
+                                <div class="lead-button">
+                                    <a href="#" class="button-call d-flex">
+                                        <div>
+                                            <span><i class="fa-solid fa-phone-volume"></i></span>
+                                            <span
+                                                class="ml-2 d-inline-block">{{ $productDetail->user->phone ?? '' }}</span>
+                                        </div>
+                                        <span>Số để gọi</span>
+                                    </a>
+                                    <a href="#" class="button-chat d-flex">
+                                        <div>
+                                            <span><i class="fa-brands fa-rocketchat"></i></span>
+                                        </div>
+                                        <span>Chat với người bán</span>
+                                    </a>
+                                </div>
+                            @endif
+                            {{-- <div class="lead-button">
                                 <a href="#" class="button-call d-flex">
                                     <div>
                                         <span><i class="fa-solid fa-phone-volume"></i></span>
-                                        <span class="ml-2 d-inline-block">{{ $productDetail->user->phone ?? "" }}</span>
+                                        <span class="ml-2 d-inline-block">{{ $productDetail->user->phone ?? '' }}</span>
                                     </div>
-                                    <span>Bấm số để gọi</span>
+                                    <span>Số để gọi</span>
                                 </a>
                                 <a href="#" class="button-chat d-flex">
                                     <div>
-                                        <span><i class="fa-solid fa-phone-volume"></i></span>
+                                        <span><i class="fa-brands fa-rocketchat"></i></span>
                                     </div>
                                     <span>Chat với người bán</span>
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -257,7 +308,7 @@
     <div class="detail-product-related-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="padding-right: 0px;">
                     <div class="detail-product-related">
                         <div class="detail-product-related-title">
                             <h3 class="title mb-0">
@@ -270,8 +321,8 @@
                                 <div class="product-item ">
                                     <div class="product-thumbnail position-relative">
                                         <a href="{{ route('get.product.by_slug', ['slug' => $item->slug]) }}">
-                                            <img src="{{ pare_url_file($item->avatar) }}"
-                                                alt="{{ $item->name }}" width="100%">
+                                            <img src="{{ pare_url_file($item->avatar) }}" alt="{{ $item->name }}"
+                                                width="100%">
                                         </a>
                                         <div class="product-heart">
                                             <i class="fa-regular fa-heart"></i>
@@ -280,29 +331,31 @@
                                     <div class="product-caption">
                                         <div class="product-title d-flex ">
                                             <h3>
-                                                <a href="{{ route('get.product.by_slug', ['slug' => $item->slug]) }}" title="{{ $item->name }}" class="product-link">{{ $item->name }}</a>
+                                                <a href="{{ route('get.product.by_slug', ['slug' => $item->slug]) }}"
+                                                    title="{{ $item->name }}"
+                                                    class="product-link">{{ $item->name }}</a>
                                             </h3>
                                         </div>
                                         <span class="product-price ">
-                                            {{ number_format($item->price,0,',','.') }} đ
+                                            {{ number_format($item->price, 0, ',', '.') }} đ
                                         </span>
                                     </div>
                                     <div class="product-footer d-flex align-items-center">
                                         <a href="#" class="d-flex align-items-center">
-                                            <img src="/assets/img/user.svg" alt="" width="16px"
-                                                height="16px">
+                                            <img src="{{ pare_url_file($item->user->avatar ?? '') }}"
+                                                onerror="this.src='{{ asset('/assets/img/default_user.png') }}';"
+                                                alt="" width="25px" height="25px" style="border-radius: 50%">
                                         </a>
-                                        <div class="dot-divider">
-
-                                        </div>
+                                        {{-- <div class="dot-divider">
+                                        </div> --}}
                                         <div class="product-time mx-1 d-flex align-items-center">
-                                            <span>15 giờ trước</span>
+                                            {{-- <span>{{ $item->created_at->format('d-m-Y') }}</span>  --}}
+                                            <span>{{ $item->created_at->diffForHumans() }}</span>
                                         </div>
-                                        <div class="dot-divider">
-
-                                        </div>
+                                        {{-- <div class="dot-divider">
+                                        </div> --}}
                                         <div class="product-address mx-1 d-flex align-items-center">
-                                            <span>Thành phố hồ chí minh</span>
+                                            <span>{{ $item->province->name ?? '' }}</span>
                                         </div>
                                     </div>
                                 </div>

@@ -1,7 +1,7 @@
 <li>
     <a href="{{ route('get.product.by_slug', ['slug' => $item->slug]) }}" title="{{ $item->name }}" class="product-detail-link d-flex position-relative">
         <div class="product-detail-thumbnail">
-            <img src="{{ pare_url_file($item->avatar) }}" alt="{{ $item->name }}" width="100%">
+            <img src="{{ pare_url_file($item->avatar) }}" alt="{{ $item->name }}" width="100%" height="100%">
         </div>
         <div class="d-flex flex-column">
             <h3 class="product-detail-title">{{ $item->name }}</h3>   

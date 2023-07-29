@@ -66,7 +66,7 @@ class User extends Authenticatable
     protected $setStatus = [
         self::STATUS_DEFAULT => [
             'name' => 'Chờ kích hoạt',
-            'class' => 'badge badge-light'
+            'class' => 'badge badge-warning'
         ],
         self::STATUS_CANCEL => [
             'name' => 'Khóa / Block',

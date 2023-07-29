@@ -13,7 +13,8 @@ use App\Models\Slide;
 class HomeController extends Controller
 {
     public function index(){
-        $productNews = Product::with('province:id,name')->where('status', Product::STATUS_SUCCESS)
+
+        $productNews = Product::with('user:id,name,avatar', 'province:id,name')->where('status', Product::STATUS_SUCCESS)
         ->orderByDesc('id')
         ->limit(18)
         ->get();
@@ -24,7 +25,7 @@ class HomeController extends Controller
         $viewData = [
             'productNews' => $productNews,
             'categories' => $categories,
-            'slides' => $slides
+            'slides' => $slides,
         ];
 
         return view('frontend.home.index', $viewData);

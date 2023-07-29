@@ -1375,8 +1375,8 @@ input[type="range"]::-moz-range-thumb{
     white-space: nowrap;
     gap: 4px;
     background-color: #fff;
-    color: #fe9900;
-    border: 1px solid #fe9900;
+    color: #1f7ed0;
+    border: 1px solid #1f7ed0;
     align-self: self-start;
     line-height: 12px;
 }
@@ -1520,12 +1520,12 @@ input[type="range"]::-moz-range-thumb{
 }
 
 .button-call{
-    background-color: #589f39;
+    background-color: #1f7ed0;
     color: #fff!important;
 }
 
 .button-chat{
-    color: #589f39;
+    color: #1f7ed0;
     background-color: #fff;
     border: 1px solid #ccc;
 }
@@ -1538,11 +1538,11 @@ input[type="range"]::-moz-range-thumb{
 }
 
 .button-call:hover{
-    background-color: #3b8122;
+    background-color: #1f7ed0;
 }
 .button-chat:hover{
     background-color: #e6e6e6;
-    color: #589f39;
+    color: #1f7ed0;
 }
 
 .lead-button-mobile{
@@ -1601,4 +1601,9 @@ input[type="range"]::-moz-range-thumb{
 .sidebar {
     position: sticky;
     top: 101px; /* Thay đổi giá trị này để chỉ định vị trí của sidebar sticky */
+    margin-bottom: 8px;
+  }
+
+  .btn-user:hover {
+    background-color: #acd8f2;
   }

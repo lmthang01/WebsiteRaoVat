@@ -24,18 +24,18 @@ class Product extends Model
     public $setStatus = [
         self::STATUS_DEFAULT => [
             'name' => 'Khởi tạo',
-            'class' => 'badge badge-light'
+            'class' => 'badge badge-warning'
         ],
         self::STATUS_SUCCESS => [
-            'name' => 'Active',
+            'name' => 'Hoạt động',
             'class' => 'badge badge-primary'
         ],
         self::STATUS_CANCEL => [
-            'name' => 'Hủy bỏ',
+            'name' => 'Không được duyệt',
             'class' => 'badge badge-danger'
         ],
         self::STATUS_FINISH => [
-            'name' => 'Hoàn thành',
+            'name' => 'Đã bán / Ẩn tin',
             'class' => 'badge badge-success'
         ],
     ];

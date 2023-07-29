@@ -263,5 +263,7 @@
 
 #70. Show tác giả, lọc bài viết 
 
+- Màu chủ đạo: #1f7ed0
+
 
 

@@ -16,6 +16,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('theme_admin/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('theme_admin/css/dashboard.css') }}" rel="stylesheet" />
@@ -303,7 +305,7 @@
                 xkey: 'date_create',
 
                 ykeys: ['total_product', 'success', 'finish', 'cancel'],
-                labels: ['Tổng tin đăng', 'Được duyệt', 'Đã bán', 'Không được duyệt'],
+                labels: ['Tổng tin đăng', 'Được duyệt', 'Đã bán / Ẩn tin', 'Không được duyệt'],
 
 
             });

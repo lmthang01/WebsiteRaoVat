@@ -13,12 +13,12 @@ class ProductDetailController extends Controller
     public function index(Request $request, $slug)
     {
         $productDetail = Product::with('category:id,name', 'user:id,name,avatar,phone', 'province:id,name', 'district:id,name', 'ward:id,name')
-            ->whereIn('status', [Product::STATUS_SUCCESS, Product::STATUS_FINISH])
+            ->whereIn('status', [Product::STATUS_SUCCESS])
             ->where('slug', $slug)->first();
 
         if(!$productDetail) return abort(404);
 
-        $productNews = Product::with('province:id,name')->whereIn('status', [Product::STATUS_SUCCESS, Product::STATUS_FINISH])
+        $productNews = Product::with('province:id,name')->whereIn('status', [Product::STATUS_SUCCESS])
         ->orderByDesc('id')
         ->limit(18)
         ->get();

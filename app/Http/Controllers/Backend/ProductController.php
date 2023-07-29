@@ -82,7 +82,7 @@ class ProductController extends Controller
             if ($statistic) {
                 $statistic_count = $statistic->count();
             } else {
-                $statistic = 0;
+                $statistic_count = 0;
             }
 
             $total_product = 0;
@@ -171,7 +171,7 @@ class ProductController extends Controller
             if ($statistic) {
                 $statistic_count = $statistic->count();
             } else {
-                $statistic = 0;
+                $statistic_count = 0;
             }
 
             $total_product = 0; // Tổng sản phẩm (tin đăng)

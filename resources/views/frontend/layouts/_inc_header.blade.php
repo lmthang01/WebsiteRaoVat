@@ -48,7 +48,7 @@
                             <li class="item-menu d-flex align-items-center pl-3">
                                 <a href="#" class="link-menu d-flex align-items-center">
                                     <img src="{{ pare_url_file(\Auth::user()->avatar ?? '') }}"
-                                        onerror="this.src='https://123code.net/images/preloader.png';" alt=""
+                                        onerror="this.src='{{ asset('/assets/img/default_user.png') }}';" alt=""
                                         width="34px" height="34px">
                                     <span class="ml-2">{{ Auth::user()->name ?? 'Chưa đăng nhập' }}</span>
                                     <span class="ml-2">
@@ -61,18 +61,19 @@
                                             <div class="user-avt position-relative">
                                                 <a href="#" class="user-avt-main">
                                                     <img src="{{ pare_url_file(\Auth::user()->avatar ?? '') }}"
-                                                        onerror="this.src='https://123code.net/images/preloader.png';"
+                                                        onerror="this.src='{{ asset('/assets/img/default_user.png') }}';"
                                                         alt="" width="100%" height="100%">
                                                     {{-- <img src="{{ asset('/assets/img/25118033.jpg') }}" alt="" width="100%"> --}}
                                                 </a>
-                                                <img src="{{ asset('/assets/img/edit-filled.svg') }}" alt="edit" class="edit-avt">
+                                                {{-- <img src="{{ asset('/assets/img/edit-filled.svg') }}" alt="edit"
+                                                    class="edit-avt"> --}}
                                             </div>
                                             <div class="user-info">
                                                 <h3 class="user-name">
-                                                    <a href="#">Chợ tốt</a>
+                                                    <a href="#">Stu2hand</a>
                                                 </h3>
                                                 <div class="user-evaluate d-flex align-items-center">
-                                                    <span class="mr-1 font-weight-bold">0.0</span>
+                                                    {{-- <span class="mr-1 font-weight-bold">0.0</span> --}}
                                                     <div class="star">
                                                         <span><i class="fa-solid fa-star"></i></span>
                                                         <span><i class="fa-solid fa-star"></i></span>
@@ -80,13 +81,12 @@
                                                         <span><i class="fa-solid fa-star"></i></span>
                                                         <span><i class="fa-solid fa-star"></i></span>
                                                     </div>
-                                                    <span style="color: var(--color-star);" class="ml-1">Chưa có đánh
-                                                        giá</span>
+                                                    {{-- <span style="color: var(--color-star);" class="ml-1">Chưa có đánh
+                                                        giá</span> --}}
                                                 </div>
-                                                <div class="is-divider">
-
-                                                </div>
-                                                <div class="user-more-info d-flex">
+                                                {{-- <div class="is-divider">
+                                                </div> --}}
+                                                {{-- <div class="user-more-info d-flex">
                                                     <div class="user-follower">
                                                         <span class="font-weight-bold">0</span>
                                                         <span>Người theo dõi</span>
@@ -98,15 +98,15 @@
                                                         <span class="font-weight-bold">0</span>
                                                         <span>Người theo dõi</span>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
-                                        <div class="profile-points d-flex">
+                                        {{-- <div class="profile-points d-flex">
                                             <div class="mr-2">
                                                 <span>Điểm tốt</span>
                                                 <div class="d-flex align-items-center">
                                                     <span class="font-weight-bold">0</span>
-                                                    <img class="ml-1" src="{{asset('/assets/img/good-point.svg')}}"
+                                                    <img class="ml-1" src="{{ asset('/assets/img/good-point.svg') }}"
                                                         alt="">
                                                 </div>
                                             </div>
@@ -114,14 +114,14 @@
                                                 <span>Điểm tốt</span>
                                                 <div class="d-flex align-items-center">
                                                     <span class="font-weight-bold">0</span>
-                                                    <img class="ml-1" src="{{asset('/assets/img/good-point.svg')}}"
+                                                    <img class="ml-1" src="{{ asset('/assets/img/good-point.svg') }}"
                                                         alt="">
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="profile-bottom d-flex flex-column">
-                                        <ul class="list-manage">
+                                        {{-- <ul class="list-manage">
                                             <h3 class="title-manage">
                                                 Tin đăng
                                             </h3>
@@ -141,14 +141,37 @@
                                                     <span>Thêm mới</span>
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                         <ul class="list-manage">
-                                            <h3 class="title-manage">
-                                                Thông tin cá nhân
-                                            </h3>
                                             @if (Auth::check())
+                                                <h3 class="title-manage">
+                                                    Tin đăng
+                                                </h3>
                                                 <li class="item-manage">
-                                                    <a href="{{ route('get.user.update_profile') }}" class="link-manage d-flex align-items-center">
+                                                    <a href="{{ route('get.user.product_index') }}"
+                                                        class="link-manage d-flex align-items-center">
+                                                        <img src="{{ asset('images/escrow_buy_orders.svg') }}"
+                                                            alt="" class="img-manage" width="24px"
+                                                            height="24px"
+                                                            style="object-fit: contain; margin-right: 12px;">
+                                                        <span>Danh sách</span>
+                                                    </a>
+                                                </li>
+                                                <li class="item-manage">
+                                                    <a href="{{ route('get.user.product_create') }}"
+                                                        class="link-manage d-flex align-items-center">
+                                                        <img src="{{ asset('images/add-new.svg') }}" alt="Thêm mới"
+                                                            class="img-manage" width="24px" height="24px"
+                                                            style="object-fit: contain; margin-right: 12px;">
+                                                        <span>Thêm mới</span>
+                                                    </a>
+                                                </li>
+                                                <h3 class="title-manage">
+                                                    Thông tin cá nhân
+                                                </h3>
+                                                <li class="item-manage">
+                                                    <a href="{{ route('get.user.update_profile') }}"
+                                                        class="link-manage d-flex align-items-center">
                                                         <img src="{{ asset('images/setting.svg') }}" alt=""
                                                             class="img-manage" width="24px" height="24px"
                                                             style="object-fit: contain; margin-right: 12px;">
@@ -156,7 +179,8 @@
                                                     </a>
                                                 </li>
                                                 <li class="item-manage">
-                                                    <a href="{{ route('get.logout') }}" title="Đăng xuất" class="link-manage d-flex align-items-center">
+                                                    <a href="{{ route('get.logout') }}" title="Đăng xuất"
+                                                        class="link-manage d-flex align-items-center">
                                                         <img src="{{ asset('images/logout.svg') }}" alt=""
                                                             class="img-manage" width="24px" height="24px"
                                                             style="object-fit: contain; margin-right: 12px;">
@@ -164,10 +188,15 @@
                                                     </a>
                                                 </li>
                                             @else
+                                                <h3 class="title-manage">
+                                                    Thực hiện
+                                                </h3>
                                                 <li class="item-manage">
-                                                    <a href="{{ route('get.login') }}" title="Đăng nhập" class="link-manage d-flex align-items-center">
-                                                        <img src="{{ asset('images/setting.svg') }}" alt=""
-                                                            class="img-manage" width="24px" height="24px"
+                                                    <a href="{{ route('get.login') }}" title="Đăng nhập"
+                                                        class="link-manage d-flex align-items-center">
+                                                        <img src="{{ asset('images/login-svgrepo-com.svg') }}"
+                                                            alt="" class="img-manage" width="24px"
+                                                            height="24px"
                                                             style="object-fit: contain; margin-right: 12px;">
                                                         <span>Đăng nhập</span>
                                                     </a>
@@ -190,8 +219,9 @@
                 <div class="col-lg-10">
                     <div class="search-item position-relative d-flex">
                         <form style="width: 100%" action="{{ route('get.search') }}">
-                            <input type="text" name="k" value="{{ Request::get('k') }}" placeholder="Tìm kiếm trên Stu2hand" style="width: 100%">
-                            <button class="position-absolute btn-search">
+                            <input type="text" name="k" value="{{ Request::get('k') }}"
+                                placeholder="Tìm kiếm trên Stu2hand" style="width: 100%">
+                            <button class="position-absolute btn-search btn-user">
                                 <span><i class="fa-solid fa-magnifying-glass"></i></span>
                             </button>
                         </form>
@@ -199,10 +229,19 @@
                 </div>
                 <div class="col-lg-2 d-none d-md-block">
                     <div class="create-news d-flex h-100">
-                        <a href="{{ route('get.user.product_create') }}" class="btn-create w-100 d-flex align-items-center justify-content-center">
-                            <span class="btn-create-icon"><i class="fa-regular fa-pen-to-square"></i></span>
-                            <span class="btn-create-text ml-2">Đăng tin</span>
-                        </a>
+                        @if (Auth::check())
+                            <a href="{{ route('get.user.product_create') }}"
+                                class="btn-create w-100 d-flex align-items-center justify-content-center">
+                                <span class="btn-create-icon"><i class="fa-regular fa-pen-to-square"></i></span>
+                                <span class="btn-create-text ml-2">Đăng tin</span>
+                            </a>
+                        @else
+                            <a href="{{ route('get.login') }}"
+                                class="btn-create w-100 d-flex align-items-center justify-content-center">
+                                <span class="btn-create-icon"><i class="fa-regular fa-pen-to-square"></i></span>
+                                <span class="btn-create-text ml-2">Đăng tin</span>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
