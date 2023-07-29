@@ -1,7 +1,6 @@
 @extends('frontend.layouts.app_frontend')
 @section('title_page', 'Tìm kiếm')
 @section('content')
-
     <div class="container" style="margin-top: 100px">
         <div class="row">
             <div class="col-lg-12">

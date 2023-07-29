@@ -124,7 +124,7 @@
                                             {{ $productDetail->user->name ?? '' }}
                                         </h3>
                                         <button>
-                                            <span>Xem trang</span>
+                                            <span><a href="{{ route('get.viewProfile', $productDetail->user->id) }}">Xem trang</a></span>
                                             <span><i class="fa-solid fa-angle-right"></i></span>
                                         </button>
                                     </div>
@@ -212,7 +212,7 @@
                             </div>
                             @if (Auth::check())
                                 @if (Auth::user()->id === $productDetail->user->id)
-                                    <h4>Sản phẩm của bạn đăng</h4>
+                                    {{-- <h4>Sản phẩm của bạn đăng</h4> --}}
                                     <div class="lead-button">
                                         <a id="delete_alert" href="{{ route('get.user.product_sold', $productDetail->id) }}" class="button-call d-flex">
                                             <div>
@@ -228,7 +228,6 @@
                                         </a>
                                     </div>
                                 @else
-                                    <h4>Sản phẩm không phải của bạn</h4>
                                     <div class="lead-button">
                                         <a href="#" class="button-call d-flex">
                                             <div>

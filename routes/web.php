@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\SlideController;
 use App\Http\Controllers\Frontend\AuthController as FrontendAuthController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\ProductDetailController;
+use App\Http\Controllers\Frontend\ProfileController as FrontendProfileController;
 use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Frontend\VerifyAccountController;
 use Illuminate\Support\Facades\Auth;
@@ -208,6 +209,9 @@ Route::group(['namespace' => 'Fontend'], function () {
 
     Route::get('xac-thuc-tai-khoan', [VerifyAccountController::class, 'newPassword'])->name('get.verify_account');
     Route::post('xac-thuc-tai-khoan', [VerifyAccountController::class, 'updateNewPassword']);
+
+    // Xem trang cá nhân của 1 user
+    Route::get('xem-trang/{id}', [FrontendProfileController::class, 'viewProfile'])->name('get.viewProfile');
 });
 
 

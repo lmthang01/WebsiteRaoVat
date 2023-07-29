@@ -11,6 +11,7 @@ class SearchController extends Controller
     public function index(Request $request){
         
         $products = Product::with('province:id,name')->whereIn('status', [Product::STATUS_SUCCESS, Product::STATUS_FINISH]);
+        
         if ($request->k)
             $products->where('name','like','%'.$request->k.'%');
 
